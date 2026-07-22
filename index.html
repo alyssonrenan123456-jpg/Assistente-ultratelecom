@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistente UltraTelecom</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>UltraTelecom IA</h2>
+    <button class="btn-primary" onclick="newChat()">+ Nova Conversa</button>
+    <hr style="opacity: 0.2;">
+    <a href="admin.html" style="color: #ccc; text-decoration: none; font-size: 14px;">Painel Admin</a>
+  </div>
+
+  <div class="main-content">
+    <div class="header">Assistente Virtual Interno</div>
+    
+    <div class="chat-box" id="chatBox">
+      <div class="message bot">Olá! Como posso te ajudar hoje com as documentações da UltraTelecom?</div>
+    </div>
+
+    <div class="input-area">
+      <input type="text" id="userInput" placeholder="Digite sua dúvida..." onkeypress="if(event.key==='Enter') sendMsg()">
+      <button class="btn-primary" style="width: auto;" onclick="sendMsg()">Enviar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
