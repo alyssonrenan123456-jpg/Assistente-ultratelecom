@@ -5,28 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Assistente UltraTelecom</title>
   <link rel="stylesheet" href="style.css">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
 
-  <div class="sidebar">
-    <h2>UltraTelecom IA</h2>
-    <button class="btn-primary" onclick="newChat()">+ Nova Conversa</button>
-    <hr style="opacity: 0.2;">
-    <a href="admin.html" style="color: #ccc; text-decoration: none; font-size: 14px;">Painel Admin</a>
+  <div id="authContainer" class="auth-container">
+    <div class="auth-box">
+      <h2 id="authTitle">Login - UltraTelecom</h2>
+      <p id="authSubtitle">Entre para acessar suas conversas salvas.</p>
+      
+      <input type="email" id="authEmail" placeholder="Seu e-mail">
+      <input type="password" id="authPassword" placeholder="Sua senha">
+      
+      <input type="password" id="authAdminSecret" placeholder="Chave Secreta Admin (Opcional)" style="display: none;">
+
+      <button id="authBtn" onclick="handleAuth()">Entrar</button>
+
+      <p class="toggle-auth">
+        <span id="toggleText">Não tem uma conta?</span>
+        <a href="#" onclick="toggleAuthMode(event)" id="toggleLink">Cadastre-se</a>
+      </p>
+      <p id="authError" class="error-msg"></p>
+    </div>
   </div>
 
-  <div class="main-content">
-    <div class="header">Assistente Virtual Interno</div>
-    
-    <div class="chat-box" id="chatBox">
-      <div class="message bot">Olá! Como posso te ajudar hoje com as documentações da UltraTelecom?</div>
+  <div id="appContainer" class="app-container" style="display: none;">
+    <div class="sidebar">
+      <h2>UltraTelecom IA</h2>
+      <button class="btn-new" onclick="startNewChat()">+ Nova Conversa</button>
+      
+      <div class="history-title">Sua conversas</div>
+      <div id="chatHistory" class="history-list">
+        </div>
+
+      <div class="spacer"></div>
+      <a href="admin.html" id="adminLink" class="admin-link" style="display: none;">⚙️ Painel Admin</a>
+      <button class="btn-logout" onclick="logout()">Sair</button>
     </div>
 
-    <div class="input-area">
-      <input type="text" id="userInput" placeholder="Digite sua dúvida..." onkeypress="if(event.key==='Enter') sendMsg()">
-      <button class="btn-primary" style="width: auto;" onclick="sendMsg()">Enviar</button>
+    <div class="main-chat">
+      <div class="chat-header">
+        <h3>Assistente Virtual Interno</h3>
+        <span id="userBadge" class="user-badge"></span>
+      </div>
+
+      <div id="chatBox" class="chat-box">
+        <div class="message bot">
+          Olá! Como posso te ajudar hoje com as documentações da UltraTelecom?
+        </div>
+      </div>
+
+      <div class="input-container">
+        <input type="text" id="userInput" placeholder="Digite sua dúvida..." onkeydown="if(event.key==='Enter') sendMsg()">
+        <button onclick="sendMsg()">Enviar</button>
+      </div>
     </div>
   </div>
 
